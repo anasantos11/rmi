@@ -1,11 +1,11 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class DictionaryServant extends UnicastRemoteObject implements Dictionary {
+public class DictionaryWordServant extends UnicastRemoteObject implements DictionaryWord {
 
 	private static final long serialVersionUID = 1L;
 	
-	public DictionaryServant() throws java.rmi.RemoteException {
+	public DictionaryWordServant() throws java.rmi.RemoteException {
 		super();
 	}
 

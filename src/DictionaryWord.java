@@ -1,7 +1,7 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface Dictionary extends Remote {
+public interface DictionaryWord extends Remote {
 
 	public String query(String word) throws RemoteException;
 	public void add(String word, String meaning) throws RemoteException;
