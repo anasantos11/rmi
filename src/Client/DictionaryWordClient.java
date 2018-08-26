@@ -5,15 +5,15 @@ import java.rmi.RemoteException;
 
 import javax.swing.JOptionPane;
 
-import Interface.DictionaryWord;
+import Interface.DictionaryInterface;
 
 public class DictionaryWordClient {
-	private static DictionaryWord look_up;
+	private static DictionaryInterface look_up;
 	private static String word = "";
 	private static String meaning = "";
 
 	public static void main(String[] args) throws Exception {
-		look_up = (DictionaryWord) Naming.lookup("//localhost/DictionaryWordService");
+		look_up = (DictionaryInterface) Naming.lookup("//localhost/DictionaryWordService");
 		if (args.length == 0) {
 			menu(-1);
 		} else {
@@ -56,7 +56,7 @@ public class DictionaryWordClient {
 		case 2: // Consultar palavra
 			word = JOptionPane.showInputDialog(null, "Digite a palavra que deseja pesquisar");
 			try {
-				JOptionPane.showMessageDialog(null, look_up.query(word));
+				JOptionPane.showMessageDialog(null, look_up.search(word));
 			} catch (RemoteException e) {
 				JOptionPane.showMessageDialog(null, e.getCause().getMessage());
 			}

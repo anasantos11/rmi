@@ -1,11 +1,19 @@
 package Server;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class Word implements WordDao {
+/**
+ * Classe que os dados que serão armazenados pelo dicionário - palavra e
+ * significado
+ * 
+ * @author Ana Paula
+ *
+ */
+public class Word implements WordInterface {
 
 	private String word;
 	private String meaning;
@@ -24,6 +32,10 @@ public class Word implements WordDao {
 		this.meaning = meaning;
 	}
 
+	/**
+	 * Método que retornas a instância da classe atual em um array de byte para ser
+	 * usada no armazenamento do arquivo
+	 */
 	@Override
 	public byte[] getByteArray() throws IOException {
 		this.output = new ByteArrayOutputStream();
@@ -33,24 +45,16 @@ public class Word implements WordDao {
 		return this.output.toByteArray();
 	}
 
+	/**
+	 * Método que recebe um array de byte e atualiza os atributos da instância da
+	 * classe com os valores nele contido
+	 */
 	@Override
 	public void setByteArray(byte[] b) throws IOException {
 		this.input = new ByteArrayInputStream(b);
-		this.dataInput= new DataInputStream(this.input);
+		this.dataInput = new DataInputStream(this.input);
 		this.word = this.dataInput.readUTF();
 		this.meaning = this.dataInput.readUTF();
-	}
-
-	@Override
-	public void setWord(String word) {
-		this.word = word;
-
-	}
-
-	@Override
-	public void setMeaning(String meaning) {
-		this.meaning = meaning;
-
 	}
 
 	@Override
@@ -59,15 +63,8 @@ public class Word implements WordDao {
 	}
 
 	@Override
-	public String getMeaning() {
-		return this.meaning;
-	}
-
-	@Override
 	public String toString() {
 		return "Significado de " + word + " : " + meaning;
 	}
-	
-	
 
 }
